@@ -1,0 +1,159 @@
+<!DOCTYPE html>    
+<html>    
+<head>    
+    <title>Login Form</title>    
+    <link rel="stylesheet" type="text/css" href="css/style.css">   
+    
+    
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+  </script>
+
+
+
+</head> 
+<style>
+    label{
+        color: black;
+    }
+</style>   
+<body>    
+    <h2></h2><br>    
+    <div class="login">    
+    <form id="form" method="get" action="login.php">    
+        
+        <label><b>Name:    
+        </b><br>  
+        </label>    
+        <input type="text" name="Uname" id="Uname" placeholder="Enter Name">    
+        <br><br> 
+
+        <label for="sex">Sex:</label>
+        <br>
+        <select name="sex" id="sex">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>   
+        <br><br>
+
+        <label for="blood group">Blood Group:</label>
+        <br>
+        <select name="blood group" id="bloodgroup">
+          <option value="1">A+</option>
+          <option value="2">A-</option>
+          <option value="3">B+</option>
+          <option value="4">B-</option>
+          <option value="5">O+</option>
+          <option value="6">O-</option>
+          <option value="7">AB+</option>
+          <option value="8">AB-</option>
+        </select>   
+        <br><br>
+
+        <label><b>Contact No:    
+        </b>    
+        </label>    
+        <input type="text" name="contact" id="contact" placeholder="Mobile No">    
+        <br><br>
+
+        <label for="division">Division:</label>
+        <br>
+        <select name="division" id="division">
+          <option value="d1">Palayamkottai</option>
+          <option value="d2">Sankarankovil</option>
+          <option value="d3">Tenkasi</option>
+          <option value="d4">Alangulam</option>
+          <option value="d5">Ambasamudram</option>
+          <option value="d6">Cheranmahadevi</option>
+          <option value="d7">Nanguneri</option>
+          <option value="d8">Tirunelveli</option>
+        </select>   
+        <br><br>
+
+        <label><b>Email     
+        </b><br>   
+        </label>    
+        <input type="text" name="email" id="email" placeholder="Email">    
+        <br><br>
+
+        <label><b>Password     
+        </b>    
+        </label>    
+        <input type="Password" name="Pass" id="Pass" placeholder="Password">    
+        <br><br>    
+        
+        <input type="submit" name="submit" id="submit" value="Sign Up">       
+        <br><br>  
+        
+        <a href="signin.html"><input type="button" name="signin" id="signin" value="Log In" >  </a>
+          
+        <br><br>
+        
+        <input type="checkbox" id="check">    
+        <span>Mark us donor</span>  
+        <br><br>  
+
+    </form>    
+    
+    
+</div> 
+
+
+<script src=
+"https://www.gstatic.com/firebasejs/3.7.4/firebase.js">
+  </script>
+
+
+<script type="module">
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
+  
+  var firebaseConfig = {
+    apiKey: "AIzaSyCOTEmy2vwfdbbgRaof4AVHNmIrVhPIF9M",
+    authDomain: "blood-bank-fbc4a.firebaseapp.com",
+    databaseURL: "https://blood-bank-fbc4a-default-rtdb.firebaseio.com",
+    projectId: "blood-bank-fbc4a",
+    storageBucket: "blood-bank-fbc4a.appspot.com",
+    messagingSenderId: "594771416904",
+    appId: "1:594771416904:web:10066dc5aa3750c5f4457d",
+    measurementId: "G-MLKJ8LK8B5"
+  };
+
+ 
+  firebase.initializeApp(firebaseConfig);
+  var messagesRef = firebase.database()
+      .ref('Collected Data');
+
+      document.getElementById('form')
+      .addEventListener('submit', submitForm);
+
+    function submitForm(e) {
+      e.preventDefault();
+
+
+
+      var name= getInputVal('Uname');
+      var name= getInputVal('phone');
+
+
+      saveMessage(name, phone);
+      document.getElementById('from').reset();
+    }
+
+    function getInputVal(id) {
+      return document.getElementById(id).value;
+    }
+
+
+    function saveMessage(name, phone) {
+      var newMessageRef = messagesRef.push();
+      newMessageRef.set({
+        name: name,
+        phone: phone
+      
+      });
+    }
+</script>
+</body>    
+</html>
